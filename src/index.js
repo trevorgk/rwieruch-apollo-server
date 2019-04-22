@@ -1,11 +1,12 @@
 import cors from 'cors';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import uuidv4 from 'uuid/v4';
+import 'dotenv/config';
 
 import schema from './schema';
 import resolvers from './resolvers';
-import models from './models';
+
+import models, { sequelize } from './models';
 
 const app = express();
 app.use(cors());
@@ -21,6 +22,12 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app, path: '/graphql' });
 
-app.listen({ port: 8000 }, () => {
-  console.log('Apollo Server on http://localhost:8000/graphql');
+// app.listen(process.env.PORT, () => {
+//   console.log(`Example app listening on port ${process.env.PORT}!`);
+// });
+
+sequelize.sync().then(() => {
+  app.listen(process.env.PORT, () => {
+    console.log(`Example app listening on port ${process.env.PORT}!`);
+  });
 });
