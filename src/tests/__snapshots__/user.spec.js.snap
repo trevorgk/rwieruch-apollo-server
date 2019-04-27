@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`users user(id: String!): User returns a user when user can be found 1`] = `
+Object {
+  "data": Object {
+    "user": Object {
+      "email": "hello@robin.com",
+      "id": "1",
+      "role": "ADMIN",
+      "username": "rwieruch",
+    },
+  },
+}
+`;
+
+exports[`users user(id: String!): User returns null when user cannot be found 1`] = `
+Object {
+  "data": Object {
+    "user": null,
+  },
+}
+`;
